@@ -10,34 +10,20 @@ import java.util.ArrayList;
 public class GameHistory
 {
 
-    private ArrayList<Board> gameHistory;
-    private static int turn = 0;
-
+    private static ArrayList<Board> gameHistory;
 
     public GameHistory()
     {
         gameHistory = new ArrayList<>();
     }
 
-
-
-    public int getTurn(Board board)
+    public static int getTurn(Board board)
     {
-        return board.gameIteration();
+        return gameHistory.size();
     }
 
-    public void addHistory(Board board, int setTurn)
+    public static void addHistory(Board board)
     {
-        for(Board b : gameHistory)
-        {
-            if(b.gameIteration() == setTurn)
-            {
-                System.out.println("Version of board has already been assigned " + setTurn + " value.");
-                return;
-            }
-        }
-
-        board.setGameTurn(setTurn);
         gameHistory.add(board);
     }
 
