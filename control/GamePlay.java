@@ -6,24 +6,23 @@ package control;
  */
 public class GamePlay implements Messages
 {
-    private static GameHistory history;
-    private int turn;
 
-    static
+    private String value;
+
+    public GamePlay(String message)
     {
-        history = new GameHistory();
+        this.value = message;
     }
-
 
     @Override
     public String getValue()
     {
-        return null;
+        return value;
     }
 
     @Override
     public void setValue(String value)
     {
-
+        this.value = value;
     }
 }
