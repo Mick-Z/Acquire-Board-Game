@@ -5,18 +5,16 @@ import java.io.Serializable;
 /**
  * Name: Mick Zeller
  */
-public class Tile extends TileState implements Serializable
+public class Tile implements Serializable
 {
 
-    private int locationX;
-    private int locationY;
+    private int tileLocation;
+    private TileState tileState;
 
-
-    public Tile(int locationX, int locationY)
+    public Tile(int location)
     {
-        new TileState();
-        setLocationX(locationX);
-        setLocationY(locationY);
+        tileState = new TileState();
+        this.tileLocation = location;
     }
 
     public Tile()
@@ -24,23 +22,49 @@ public class Tile extends TileState implements Serializable
         new TileState();
     }
 
-    public int getLocationX()
+    public int getLocation()
     {
-        return locationX;
+        return tileLocation;
     }
 
-    public int getLocationY()
+
+    public void setTileLocation(int location)
     {
-        return locationY;
+        tileLocation = location;
     }
 
-    public void setLocationX(int locationX)
+
+    @Override
+    public String toString()
     {
-        this.locationX = locationX;
+        return getLocation() + ":" + tileState.getState();
     }
 
-    public void setLocationY(int locationY)
+    class TileState
     {
-        this.locationY = locationY;
+
+        private int state;
+
+        public TileState()
+        {
+            state = 0;
+        }
+
+        public int getState()
+        {
+            return state;
+        }
+
+        public void setState(int updateState)
+        {
+            if (updateState < 0 || updateState > 9)
+            {
+                System.out.println("State must be between 0 and 9");
+                return;
+            }
+            this.state = updateState;
+        }
+
     }
 }
+
