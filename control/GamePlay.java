@@ -1,11 +1,10 @@
 package control;
 
-import model.Board;
 
 /**
  * Name: Mick Zeller
  */
-public class GamePlay extends Messages
+public class GamePlay implements Messages
 {
     private static GameHistory history;
     private int turn;
@@ -15,15 +14,16 @@ public class GamePlay extends Messages
         history = new GameHistory();
     }
 
-    public void send(Board board)
-    {
-        turn = board.gameIteration();
-        history.addHistory(board, turn);
 
-    }
-
-    public String receive(Class<?> recieved)
+    @Override
+    public String getValue()
     {
         return null;
+    }
+
+    @Override
+    public void setValue(String value)
+    {
+
     }
 }
