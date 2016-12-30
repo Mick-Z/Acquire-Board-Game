@@ -9,17 +9,17 @@ public class Tile implements Serializable
 {
 
     private int tileLocation;
-    private TileState tileState;
+    private int state;
 
     public Tile(int location)
     {
-        tileState = new TileState();
+        setState(0);
         this.tileLocation = location;
     }
 
     public Tile()
     {
-        new TileState();
+        setState(0);
     }
 
     public int getLocation()
@@ -27,44 +27,27 @@ public class Tile implements Serializable
         return tileLocation;
     }
 
-
-    public void setTileLocation(int location)
+    public int getState()
     {
-        tileLocation = location;
+        return state;
     }
 
+    public void setState(int updateState)
+    {
+        if (updateState < 0 || updateState > 9)
+        {
+            System.out.println("State must be between 0 and 9");
+            return;
+        }
+        this.state = updateState;
+    }
 
     @Override
     public String toString()
     {
-        return getLocation() + ":" + tileState.getState();
+        return getLocation() + ":" + getState();
     }
 
-    class TileState
-    {
-
-        private int state;
-
-        public TileState()
-        {
-            state = 0;
-        }
-
-        public int getState()
-        {
-            return state;
-        }
-
-        public void setState(int updateState)
-        {
-            if (updateState < 0 || updateState > 9)
-            {
-                System.out.println("State must be between 0 and 9");
-                return;
-            }
-            this.state = updateState;
-        }
-
-    }
 }
+
 

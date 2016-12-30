@@ -1,6 +1,8 @@
 package model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+
 
 /**
  * Name: Mick Zeller
@@ -8,49 +10,33 @@ import java.io.Serializable;
 public class Board extends Tile implements Serializable
 {
 
-    private Tile[][] gameBoard;
-    private int gameTurn = 0;
-    private final int ROW = 12;
-    private final int COLUMN = 12;
-
+    private ArrayList<Tile> gameBoard;
+    private final int TOTAL_TILES = 108;
 
     public Board()
     {
-        gameBoard = new Tile[ ROW ][ COLUMN ];
-
-        for (int x = 0; x < ROW; x++)
+        gameBoard = new ArrayList<>();
+        for (int i = 0; i < TOTAL_TILES; i++)
         {
-            for (int y = 0; y < COLUMN; y++)
-            {
-                gameBoard[ x ][ y ] = new Tile(x, y);
-            }
+            gameBoard.add(new Tile(i));
         }
-
-
     }
 
     public void upDateTile(Tile tile, int updatedState)
     {
         tile.setState(updatedState);
-        gameBoard[ tile.getLocationX() ][ tile.getLocationY() ] = tile;
+        gameBoard.add(tile.getLocation(), tile);
     }
 
-    public int gameIteration()
+
+    public ArrayList<Tile> getGameBoard()
     {
-        return gameTurn;
+        return gameBoard;
     }
 
-    public void setGameTurn(int turn)
+    @Override
+    public String toString()
     {
-        if (turn < gameTurn)
-        {
-            return;
-        }
-        else
-        {
-            this.gameTurn = turn;
-        }
-
+        return "" + getGameBoard();
     }
-
 }
