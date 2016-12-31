@@ -14,9 +14,9 @@ public class AcquireView extends JFrame
 
     public AcquireView() throws IOException
     {
-        GameBoardWindow gameBoardPanel;
+        BoardPanel gameBoardPanel;
         UserPanel gameInfo;
-        ChatWindow chatPanel;
+        ChatPanel chatPanel;
 
 
         setTitle("Acquire Game");
@@ -25,7 +25,7 @@ public class AcquireView extends JFrame
         getContentPane().setLayout(null);
         //Prints out my hand of 6 tiles
 
-        gameBoardPanel = new GameBoardWindow();
+        gameBoardPanel = new BoardPanel();
         gameBoardPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
 
         gameBoardPanel.setBounds(15, 68, 781, 465);
@@ -47,7 +47,7 @@ public class AcquireView extends JFrame
         /**
          * Adding panel for chatting
          */
-        chatPanel = new ChatWindow();
+        chatPanel = new ChatPanel();
         chatPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
         chatPanel.setBounds(811, 324, 403, 335);
         getContentPane().add(chatPanel);

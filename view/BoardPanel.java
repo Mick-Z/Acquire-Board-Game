@@ -8,7 +8,7 @@ import java.awt.image.BufferedImage;
 /**
  * Name: Mick Zeller
  */
-public class GameBoardWindow extends JPanel
+public class BoardPanel extends JPanel
 {
     private final JButton[] tiles = new JButton[ 108 ];
     private final ImageIcon[] icons = new ImageIcon[ 9 ];
@@ -17,7 +17,7 @@ public class GameBoardWindow extends JPanel
     int tileNumber = 1;
     int tileLetter = 0;
 
-    public GameBoardWindow()
+    public BoardPanel()
     {
         setBorder(new EmptyBorder(20, 20, 20, 20));
         setLayout(new BorderLayout(0, 50));

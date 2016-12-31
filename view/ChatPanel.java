@@ -7,10 +7,10 @@ import java.awt.*;
 /**
  * Name: Mick Zeller
  */
-public class ChatWindow extends JPanel
+public class ChatPanel extends JPanel
 {
 
-    public ChatWindow()
+    public ChatPanel()
     {
         setBorder(new LineBorder(new Color(0, 0, 0)));
         setSize(new Dimension(400, 330));
