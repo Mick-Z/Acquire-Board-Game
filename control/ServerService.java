@@ -1,6 +1,7 @@
 package control;
 
 import org.json.JSONObject;
+import server.IPCQueue;
 
 
 /**
@@ -9,46 +10,18 @@ import org.json.JSONObject;
 public class ServerService
 {
 
-    public enum Type
+    IPCQueue ipcQueue;
+
+    public ServerService(IPCQueue ipcQueue)
     {
-        CHAT("chat"), BOARD("board"), JOIN("join"), START("start");
-
-        private String type;
-
-        Type(String chat)
-        {
-            type = chat;
-        }
-
-        public String getType()
-        {
-            return type;
-        }
+        this.ipcQueue = ipcQueue;
     }
 
-
-    private String module = "acquire"; //whatever game you want
-    private String action = "broadcast"; //debug, log
-//    private String type = "application";
-
-
-    public JSONObject toServer(String message, Type type)
+    public void gameJSON(String message, GameService.Type type)
     {
-        JSONObject serverJSON = new JSONObject();
+        JSONObject json = new JSONObject();
 
-        serverJSON.put("module", module);
-        serverJSON.put("action", action);
-        serverJSON.put("type", type.getType());
-        serverJSON.put("message", message);
-
-        return serverJSON;
-    }
-
-    public String fromServer(String incomingData)
-    {
-        JSONObject serverJSON = new JSONObject();
-        // TODO: 12/30/2016 need to implement this
-        return serverJSON.toString();
+        ipcQueue.sendMessage(json);
     }
 
 }

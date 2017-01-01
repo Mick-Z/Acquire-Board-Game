@@ -29,7 +29,7 @@ public class BoardPanel extends JPanel
     // TODO: 12/31/2016 make an overloaded constructor that accepts and instance of GameHub
     public BoardPanel()
     {
-        testState = test.updateBoard();
+
         setBorder(new EmptyBorder(20, 20, 20, 20));
         setLayout(new BorderLayout(0, 50));
         makeIconArray(icons.length);
@@ -77,7 +77,6 @@ public class BoardPanel extends JPanel
             {
                 int tileLocation = Integer.parseInt(e.getActionCommand());
                 System.out.println("Tile location " + tileLocation);
-                System.out.println(testState.length);
                 for (int i = 0; i < testState.length; i++)
                 {
                     updateBoard(i, testState[ i ]);

@@ -47,7 +47,7 @@ public class ChatPanel extends JPanel
         textField.setColumns(10);
 
         JButton button = new JButton("End Turn");
-        button.setEnabled(false);
+        button.setEnabled(true);
         button.setBounds(290, 47, 80, 29);
         sendPanel.add(button);
 

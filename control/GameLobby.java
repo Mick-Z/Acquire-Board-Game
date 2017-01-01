@@ -31,6 +31,7 @@ public class GameLobby
         {
             if (!player.getName().equalsIgnoreCase(p.getName()))
             {
+
                 lobby.add(player);
                 return true;
             }
