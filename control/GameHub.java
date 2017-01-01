@@ -1,7 +1,5 @@
 package control;
 
-import java.util.ArrayList;
-
 /**
  * Name: Mick Zeller
  */
@@ -9,21 +7,19 @@ public class GameHub
 {
 
 
-    ArrayList<Integer> board = new ArrayList<>(108); //contains all states of each tile within the board
     GameLobby gameLobby = new GameLobby();
 
-    public void update(String updateGame)
+    public int[] updateBoard() // will be sent to the BoardPanel class
     {
-        String boardString = updateGame.substring(0, board.size() - 1);
-        // TODO: 12/30/2016 Declare Strings for stocks and users that will be parsed from updateGame String
+        String tempBoardNeedsToBeParsed = "0568791565487958641310065849856512345687898540654506548987654231356465465465465465465413216548974654651321023";
+        int[] board = new int[ tempBoardNeedsToBeParsed.length() ];
 
         int count = 0;
-
-        while (count < 108)
+        while (count < board.length)
         {
-            board.add(count, Integer.parseInt(boardString.substring(count, count + 1)));
+            board[ count ] = Integer.parseInt(tempBoardNeedsToBeParsed.substring(count, count + 1));
             count++;
         }
-
+        return board;
     }
 }

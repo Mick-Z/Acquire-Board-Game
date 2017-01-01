@@ -1,5 +1,7 @@
 package view;
 
+import control.GameHub;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
@@ -16,12 +18,18 @@ public class BoardPanel extends JPanel
     private final JButton[] tiles = new JButton[ 108 ];
     private final ImageIcon[] icons = new ImageIcon[ 9 ];
     private JButton button;
-    String letters = "ABCDEFGHI";
-    int tileNumber = 1;
-    int tileLetter = 0;
+    private String letters = "ABCDEFGHI";
+    private int tileNumber = 1;
+    private int tileLetter = 0;
+    GameHub test = new GameHub();
+    private int[] testState;
+    //GameHub hub;
+    //public BoardPanel(GameHub aHub){hub = aHub}
 
+    // TODO: 12/31/2016 make an overloaded constructor that accepts and instance of GameHub
     public BoardPanel()
     {
+        testState = test.updateBoard();
         setBorder(new EmptyBorder(20, 20, 20, 20));
         setLayout(new BorderLayout(0, 50));
         makeIconArray(icons.length);
@@ -60,9 +68,6 @@ public class BoardPanel extends JPanel
 
     private class TileHandler implements ActionListener
     {
-
-        //private JButton updatingTile;
-
         @Override
         public void actionPerformed(ActionEvent e)
         {
@@ -72,7 +77,11 @@ public class BoardPanel extends JPanel
             {
                 int tileLocation = Integer.parseInt(e.getActionCommand());
                 System.out.println("Tile location " + tileLocation);
-
+                System.out.println(testState.length);
+                for (int i = 0; i < testState.length; i++)
+                {
+                    updateBoard(i, testState[ i ]);
+                }
 
             } catch (Exception ex)
             {
@@ -82,23 +91,15 @@ public class BoardPanel extends JPanel
             // TODO: 12/31/2016 implement a way to send this data to the server 
 
         }
+        /*American red
+        Continental blue
+        Festival green
+        Imperial yellow
+        Luxor purple
+        Tower brown
+        Worldwide orange*/
 
-
-//        public void updatingBoard(String userName)
-//        {
-//            int t = 0;
-//            String temp = gs.currentBoard.getJson().toString();
-//            System.out.println(gs.currentBoard.getJson());
-//            for (int i = 0; i < gs.currentBoard.getJson().length(); i++)
-//            {
-//                t = Integer.parseInt(temp.substring(i, i + 1));
-//                tileStatus[ i ] = t;
-//                testTileUpdate(i, tileStatus[ i ]);
-//            }
-//
-//        }
-
-        public void testTileUpdate(int index, int status)
+        public void updateBoard(int index, int status)
         {
 
             if (status < 0 || status > 9 || index > tiles.length - 1)
@@ -111,28 +112,47 @@ public class BoardPanel extends JPanel
                     button = tiles[ index ];
                     tiles[ index ] = button;
                     break;
-                case 1:
+                case 1://Tile placed no hotel
+                    button = tiles[ index ];
+                    button.setBorder(new LineBorder(Color.BLACK, 3));
+                    tiles[ index ] = button;
+                    break;
+                case 2://American Hotel
                     button = tiles[ index ];
                     button.setBorder(new LineBorder(Color.RED, 3));
                     tiles[ index ] = button;
                     break;
-                case 2:
+                case 3://Continental Hotel
                     button = tiles[ index ];
                     button.setBorder(new LineBorder(Color.BLUE, 3));
                     tiles[ index ] = button;
                     break;
-                case 3:
+                case 4://Festival Hotel
+                    button = tiles[ index ];
+                    button.setBorder(new LineBorder(Color.GREEN, 3));
+                    tiles[ index ] = button;
+                    break;
+                case 5://Imperial Hotel
                     button = tiles[ index ];
                     button.setBorder(new LineBorder(Color.YELLOW, 3));
                     tiles[ index ] = button;
                     break;
-                case 4:
+                case 6://Luxor Hotel
                     button = tiles[ index ];
-                    button.setEnabled(false);
-                    button.setBorder(new LineBorder(Color.GREEN, 3));
+                    button.setBorder(new LineBorder(Color.MAGENTA, 3));
                     tiles[ index ] = button;
                     break;
-
+                case 7://Tower Hotel
+                    button = tiles[ index ];
+                    button.setBorder(new LineBorder(Color.CYAN, 3));// TODO: 12/31/2016 change to brown
+                    tiles[ index ] = button;
+                    break;
+                case 8://Worldwide Hotel
+                    button = tiles[ index ];
+                    button.getBackground().brighter();
+                    button.setBorder(new LineBorder(Color.ORANGE, 3));
+                    tiles[ index ] = button;
+                    break;
                 default:
                     button = tiles[ index ];
                     button.setBorder(new LineBorder(Color.PINK, 3));
